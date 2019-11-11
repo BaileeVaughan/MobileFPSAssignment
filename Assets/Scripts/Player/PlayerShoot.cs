@@ -13,8 +13,13 @@ public class PlayerShoot : MonoBehaviour
         shootFactor += Time.deltaTime;
         if (shootFactor >= shootRate)
         {
-            Instantiate(bulletPrefab, shotOrigin.position, shotOrigin.rotation);
-            shootFactor = 0;
+            RealShoot();
         }
+    }
+
+    public void RealShoot()
+    {
+        Instantiate(bulletPrefab, shotOrigin.position, shotOrigin.rotation);
+        shootFactor = 0;
     }
 }

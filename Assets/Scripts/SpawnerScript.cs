@@ -20,20 +20,20 @@ public class SpawnerScript : MonoBehaviour
         HandleSpawn();
     }
 
-    void HandleSpawn()
+    public void HandleSpawn()
     {
         spawnFactor += Time.deltaTime;
         if (spawnFactor >= spawnRate)
         {
-            int randomIndex = Random.Range(0, prefabs.Length);
-            Spawn(prefabs[randomIndex]);
+            RealSpawn();
             spawnFactor = 0;
         }
-    }
+    }    
 
-    void Spawn(GameObject gO)
+    public void RealSpawn()
     {
-        GameObject newObject = Instantiate(gO);
+        int randomIndex = Random.Range(0, prefabs.Length);
+        GameObject newObject = Instantiate(prefabs[randomIndex]);
         Vector3 randomPoint = Random.insideUnitSphere * spawnRadius;
         newObject.transform.position = transform.position + randomPoint;
     }
