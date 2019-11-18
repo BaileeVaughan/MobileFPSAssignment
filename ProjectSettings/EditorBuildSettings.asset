@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/FPSMoblie.unity
+    guid: 95711cdb8df2d2e408f1ad1131f72d3a
   m_configObjects: {}
