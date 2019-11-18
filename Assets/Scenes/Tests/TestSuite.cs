@@ -70,18 +70,6 @@ namespace Tests
             Assert.Greater(firstPos, schnoz.transform.position.y, "SCHNOZ WON'T MOVE! HE'S DEAD!!");
         }
 
-        [UnityTest]
-        public IEnumerator SchnozFallsOHNO()
-        {
-            spawner.spawn = true;
-            spawner.RealSpawn();
-            yield return new WaitForEndOfFrame();
-            GameObject schnoz = Object.FindObjectOfType<Schnoz>().gameObject;
-            float firstPos = schnoz.transform.position.y;
-            yield return new WaitForSeconds(1);
-            Assert.Greater(schnoz.transform.position.y, firstPos, "SCHNOZ WON'T MOVE! HE'S DEAD!!");
-        }
-
         [TearDown]
         public void TearDown()
         {
