@@ -17,6 +17,7 @@ namespace Tests
         {
             GameObject prefab = Resources.Load<GameObject>("Prefabs/Game");
             theObject = Object.Instantiate(prefab);
+            spawner = Object.FindObjectOfType<SpawnerScript>();
             shoot = theObject.GetComponentInChildren<PlayerShoot>();
         }
 
@@ -50,8 +51,9 @@ namespace Tests
         [UnityTest]
         public IEnumerator SchnozSpawns()
         {
+            spawner.spawn = true;
             spawner.RealSpawn();
-            yield return new WaitForFixedUpdate();
+            yield return new WaitForSeconds(.1f);
             GameObject schnoz = Object.FindObjectOfType<Schnoz>().gameObject;
             Assert.IsTrue(schnoz != null, "NO SCHNOZ");
         }
@@ -59,12 +61,13 @@ namespace Tests
         [UnityTest]
         public IEnumerator SchnozFalls()
         {
+            spawner.spawn = true;
             spawner.RealSpawn();
             yield return new WaitForEndOfFrame();
             GameObject schnoz = Object.FindObjectOfType<Schnoz>().gameObject;
             float firstPos = schnoz.transform.position.y;
-            yield return new WaitForSeconds(2);
-            Assert.Greater(schnoz.transform.position.y, firstPos, "SCHNOZ WON'T MOVE! HE'S DEAD!!");
+            yield return new WaitForSeconds(1);
+            Assert.Greater(firstPos, schnoz.transform.position.y, "SCHNOZ WON'T MOVE! HE'S DEAD!!");
         }
 
 

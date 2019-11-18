@@ -9,6 +9,8 @@ public class SpawnerScript : MonoBehaviour
     public float spawnRate = 1f;
     public float spawnFactor = 0f;
 
+    public bool spawn;
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
@@ -17,7 +19,7 @@ public class SpawnerScript : MonoBehaviour
 
     void Update()
     {
-        HandleSpawn();
+            HandleSpawn();
     }
 
     public void HandleSpawn()
@@ -32,9 +34,12 @@ public class SpawnerScript : MonoBehaviour
 
     public void RealSpawn()
     {
-        int randomIndex = Random.Range(0, prefabs.Length);
-        GameObject newObject = Instantiate(prefabs[randomIndex]);
-        Vector3 randomPoint = Random.insideUnitSphere * spawnRadius;
-        newObject.transform.position = transform.position + randomPoint;
+        if (spawn == true)
+        {
+            int randomIndex = Random.Range(0, prefabs.Length);
+            GameObject newObject = Instantiate(prefabs[randomIndex]);
+            Vector3 randomPoint = Random.insideUnitSphere * spawnRadius;
+            newObject.transform.position = transform.position + randomPoint;
+        }
     }
 }
